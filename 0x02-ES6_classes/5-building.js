@@ -3,10 +3,10 @@ export default class Building {
     if (typeof sqft !== 'number') {
       throw new TypeError('Square Feet must be a number');
     }
-    if (
-      this.evacuationWarningMessage === Building.prototype.evacuationWarningMessage
-    ) {
-      throw new Error('Class extending Building must override evacuationWarningMessage');
+    if (new.target !== Building) {
+      if (this.evacuationWarningMessage === Building.prototype.evacuationWarningMessage) {
+        throw new Error('Class extending Building must override evacuationWarningMessage');
+      }
     }
     this._sqft = sqft;
   }
