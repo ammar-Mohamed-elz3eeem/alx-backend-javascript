@@ -1,4 +1,4 @@
-export default class Car {
+export default class EVCar extends Car {
   constructor(brand, motor, color, range) {
     this._brand = brand;
     this._motor = motor;
