@@ -4,8 +4,11 @@ export default function cleanSet(set, startString) {
   }
   const arr = [];
   set.forEach((str) => {
-    if (str.startsWith(startString)) {
-      arr.push(str.slice(startString.length));
+    if (typeof str === 'string' && str.startsWith(startString)) {
+      const valueStr = str.slice(startString.length);
+      if (valueStr && valueStr !== str) {
+        arr.push(valueStr);
+      }
     }
   });
   return arr.join('-');
