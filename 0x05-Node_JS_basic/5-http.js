@@ -40,12 +40,18 @@ const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    res.write('This is the list of our students\n');
+    const responseArray = ['This is the list of our students'];
     try {
       const students = await countStudents(process.argv[2]);
-      res.end(students);
+      responseArray.push(students);
+      let responseText = responseArray.join('\n');
+      res.write(Buffer.from(responseText));
+      res.end();
     } catch (err) {
-      res.end(err.message);
+      responseArray.push(err instanceof Error ? err.message : err.toString());
+      let responseText = responseArray.join('\n');
+      res.write(Buffer.from(responseText));
+      res.end();
     }
   }
 });
