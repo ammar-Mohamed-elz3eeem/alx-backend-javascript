@@ -19,7 +19,7 @@ const _studentsPerMajor = (students) => {
 const countStudents = (dbPath) => new Promise((res, rej) => {
   fs.readFile(dbPath, (err, data) => {
     if (err) {
-      rej(reject(new Error('Cannot load the database')));
+      rej(new Error('Cannot load the database'));
     }
     if (data) {
       const newData = data.toString().split('\n').slice(1, -1);
