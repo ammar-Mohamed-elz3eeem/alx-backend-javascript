@@ -44,12 +44,12 @@ const app = http.createServer(async (req, res) => {
     try {
       const students = await countStudents(process.argv[2]);
       responseArray.push(students);
-      let responseText = responseArray.join('\n');
+      const responseText = responseArray.join('\n');
       res.write(Buffer.from(responseText));
       res.end();
     } catch (err) {
       responseArray.push(err instanceof Error ? err.message : err.toString());
-      let responseText = responseArray.join('\n');
+      const responseText = responseArray.join('\n');
       res.write(Buffer.from(responseText));
       res.end();
     }
