@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const sendPaymentRequestToApi = require('./3-payment');
 const Utils = require('./utils');
 
-describe('sendPaymentRequestToApi same logic as calculateNumber', () => {
+describe('sendPaymentRequestToApi', () => {
   it('check function called with specified parameters', () => {
     let spy = sison.spy(Utils);
     sendPaymentRequestToApi(100, 20);
