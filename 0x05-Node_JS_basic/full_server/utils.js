@@ -3,13 +3,13 @@ const fs = require('fs');
 const readDatabase = (dbPath) => new Promise((resolve, reject) => {
   fs.readFile(dbPath, (err, data) => {
     if (err) {
-      console.log('Error');
+      reject(Error('Cannot load the database'));
     }
     if (data) {
       const students = data.toString().split('\n').slice(1, -1);
       const result = students.reduce((acc, currentStudent) => {
         const student = currentStudent.split(',');
-        const obj = Object.assign({}, acc);
+        const obj = { ...acc };
         if (!obj[student[3]]) {
           obj[student[3]] = [student[0]];
         } else {
@@ -19,7 +19,7 @@ const readDatabase = (dbPath) => new Promise((resolve, reject) => {
       }, {});
       resolve(result);
     }
-  })
+  });
 });
 
 export default readDatabase;

@@ -1,17 +1,25 @@
-import readDatabase from "../utils";
+import readDatabase from '../utils';
 
 class StudentsController {
   static async getAllStudents(request, response) {
     try {
       const data = await readDatabase(process.argv[2]);
-      let output = ['This is the list of our students'];
-      const compareFunction = (a, b) => a[0].toLowerCase() > b[0].toLowerCase();
+      const output = ['This is the list of our students'];
+      const compareFunction = (a, b) => {
+        if (a[0].toLowerCase() < b[0].toLowerCase()) {
+          return -1;
+        }
+        if (a[0].toLowerCase() > b[0].toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      };
       for (const [field, students] of Object.entries(data).sort(compareFunction)) {
         output.push(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
       }
       return response.status(200).send(output.join('\n'));
     } catch (e) {
-      return response.status(500).send('Cannot load the database: ' + e.toString());
+      return response.status(500).send('Cannot load the database');
     }
   }
 
