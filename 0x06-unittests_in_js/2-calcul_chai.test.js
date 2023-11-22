@@ -2,45 +2,45 @@ const { expect } = require('chai');
 const calculateNumber = require('./2-calcul_chai');
 
 describe('calculateNumber', () => {
-  describe('type = "ADD"', () => {
+  describe('type = "sum"', () => {
     it('Calculate is working with integers', () => {
-      expect(calculateNumber('ADD', 2.0, 3.0)).to.equal(5);
+      expect(calculateNumber('sum', 2.0, 3.0)).to.equal(5);
     });
 
     it('Calculate is working with floats', () => {
-      expect(calculateNumber('ADD', 2.0, 3.4)).to.equal(5);
+      expect(calculateNumber('sum', 2.0, 3.4)).to.equal(5);
     });
 
     it('1 negative + 1 positive', () => {
-      expect(calculateNumber('ADD', 2.0, -3.4)).to.equal(-1);
+      expect(calculateNumber('sum', 2.0, -3.4)).to.equal(-1);
     });
 
     it('both negative numbers', () => {
-      expect(calculateNumber('ADD', -2.0, -3.4)).to.equal(-5);
+      expect(calculateNumber('sum', -2.0, -3.4)).to.equal(-5);
     });
 
     it('Calculate is working with floats', () => {
-      expect(calculateNumber('ADD', 2.0, 3.7)).to.equal(6);
+      expect(calculateNumber('sum', 2.0, 3.7)).to.equal(6);
     });
 
     it('working if both floats', () => {
-      expect(calculateNumber('ADD', 1.2, 3.7)).to.equal(5);
+      expect(calculateNumber('sum', 1.2, 3.7)).to.equal(5);
     });
 
     it('working if both floats', () => {
-      expect(calculateNumber('ADD', 1.5, 3.7)).to.equal(6);
+      expect(calculateNumber('sum', 1.5, 3.7)).to.equal(6);
     });
 
     it('0 + 0', () => {
-      expect(calculateNumber('ADD', 0.0, 0.0)).to.equal(0);
+      expect(calculateNumber('sum', 0.0, 0.0)).to.equal(0);
     });
 
     it('both numbers rounded to 0', () => {
-      expect(calculateNumber('ADD', 0.49, 0.49)).to.equal(0);
+      expect(calculateNumber('sum', 0.49, 0.49)).to.equal(0);
     });
 
     it('using lower case type will return undefined', () => {
-      expect(calculateNumber('add', 4.0, 3.7)).to.equal(0);
+      expect(calculateNumber('sum', 4.0, 3.7)).to.equal(0);
     });
   });
 

@@ -2,37 +2,37 @@ const assert = require('assert');
 const calculateNumber = require('./1-calcul');
 
 describe('calculateNumber', () => {
-  describe('type = "ADD"', () => {
+  describe('type = "SUM"', () => {
     it('equal positive numbers', () => {
-      assert.strictEqual(calculateNumber('ADD', 2.0, 2.0), 4);
+      assert.strictEqual(calculateNumber('SUM', 2.0, 2.0), 4);
     });
 
     it('equal positive numbers (one rounded to smallest & one rounded to biggest)', () => {
-      assert.strictEqual(calculateNumber('ADD', 2.7, 2.3), 5);
+      assert.strictEqual(calculateNumber('SUM', 2.7, 2.3), 5);
     });
 
     it('one positive & one negative number', () => {
-      assert.strictEqual(calculateNumber('ADD', -2.0, 2.0), 0);
+      assert.strictEqual(calculateNumber('SUM', -2.0, 2.0), 0);
     });
 
     it('one positive rounded to smallest & one negative number rounded to biggest', () => {
-      assert.strictEqual(calculateNumber('ADD', 2.7, -2.3), 1);
+      assert.strictEqual(calculateNumber('SUM', 2.7, -2.3), 1);
     });
 
     it('equal netive numbers', () => {
-      assert.strictEqual(calculateNumber('ADD', -2.0, -2.0), -4);
+      assert.strictEqual(calculateNumber('SUM', -2.0, -2.0), -4);
     });
 
     it('equal netive numbers (one rounded to smallest & one rounded to biggest)', () => {
-      assert.strictEqual(calculateNumber('ADD', -2.7, -2.3), -5);
+      assert.strictEqual(calculateNumber('SUM', -2.7, -2.3), -5);
     });
 
     it('0 + 0 = 0', () => {
-      assert.strictEqual(calculateNumber('ADD', 0.0, 0.0), 0);
+      assert.strictEqual(calculateNumber('SUM', 0.0, 0.0), 0);
     });
 
-    it('test with add lowercase', () => {
-      assert.strictEqual(calculateNumber('add', 0.0, 0.0), 0);
+    it('test with sum lowercase', () => {
+      assert.strictEqual(calculateNumber('sum', 0.0, 0.0), 0);
     });
   });
   describe('type == "SUBTRACT"', () => {

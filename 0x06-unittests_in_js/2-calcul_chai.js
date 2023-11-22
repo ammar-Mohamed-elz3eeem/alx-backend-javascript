@@ -7,7 +7,7 @@ function calculateNumber(type, a, b) {
   }
 
   switch (type) {
-    case 'ADD':
+    case 'SUM':
       return a + b;
     case 'SUBTRACT':
       return a - b;
