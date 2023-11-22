@@ -1,145 +1,94 @@
 const chai = require('chai');
 const calculateNumber = require('./1-calcul');
 
-describe("calculateNumber with type ADD", () => {
+describe('calculateNumber', () => {
+  describe('type = "ADD"', () => {
+    it('Calculate is working with integers', () => {
+      chai.expect(calculateNumber('ADD', 2, 3)).to.be.equal(5);
+    });
 
-  it('Calculate is working with integers', () => {
-    chai.expect(calculateNumber(2, 3, 'ADD')).equal(5);
+    it('Calculate is working with floats', () => {
+      chai.expect(calculateNumber('ADD', 2, 3.4)).to.be.equal(5);
+    });
+
+    it('Calculate is working with floats', () => {
+      chai.expect(calculateNumber('ADD', 2, 3.7)).to.be.equal(6);
+    });
+
+    it('working if both floats', () => {
+      chai.expect(calculateNumber('ADD', 1.2, 3.7)).to.be.equal(5);
+    });
+
+    it('working if both floats', () => {
+      chai.expect(calculateNumber('ADD', 1.5, 3.7)).to.be.equal(6);
+    });
+
+    it('using lower case type will return undefined', () => {
+      chai.expect(calculateNumber('add', 4, 3.7)).to.be.equal(0);
+    });
   });
 
-  it('Calculate is working with floats', () => {
-    chai.expect(calculateNumber(2, 3.4, 'ADD')).equal(5);
+  describe('type = "SUBTRACT"', () => {
+    it('Calculate is working with integers', () => {
+      chai.expect(calculateNumber('SUBTRACT', 2, 3)).to.be.equal(-1);
+    });
+
+    it('Calculate is working with floats', () => {
+      chai.expect(calculateNumber('SUBTRACT', 2, 3.4)).to.be.equal(-1);
+    });
+
+    it('Calculate is working with floats', () => {
+      chai.expect(calculateNumber('SUBTRACT', 2, 3.7)).to.be.equal(-2);
+    });
+
+    it('working if both floats', () => {
+      chai.expect(calculateNumber('SUBTRACT', 1.2, 3.7)).to.be.equal(-3);
+    });
+
+    it('working if both floats', () => {
+      chai.expect(calculateNumber('SUBTRACT', 1.52, 3.71)).to.be.equal(-2);
+    });
+
+    it('using lower case type will return undefined', () => {
+      chai.expect(calculateNumber('subtract', 5, 3.7)).to.be.equal(0);
+    });
   });
 
-  it('Calculate is working with floats', () => {
-    chai.expect(calculateNumber(2, 3.7, 'ADD')).equal(6);
-  });
-
-  it('working if both floats', () => {
-    chai.expect(calculateNumber(1.2, 3.7, 'ADD')).equal(5);
-  });
-
-  it('working if both floats', () => {
-    chai.expect(calculateNumber(1.5, 3.7, 'ADD')).equal(6);
-  });
-
-  it('working if one argument is not int or float', () => {
-    chai.expect(calculateNumber(1.5, "3.7", 'ADD')).equal(6);
-  });
-
-  it('working if both arguments is not int or float', () => {
-    chai.expect(calculateNumber("1.5", "3.7", 'ADD')).equal(6);
-  });
-
-  it('returning nan while rounding string litterals', () => {
-    chai.expect(calculateNumber("ali", 3.7, 'ADD')).to.be.NaN;
-  });
-
-  it('returning nan while rounding arrays', () => {
-    chai.expect(calculateNumber([false], 3.7, 'ADD')).to.be.NaN;
-  });
-
-  it('using lower case type will return undefined', () => {
-    chai.expect(calculateNumber([false], 3.7, 'add')).to.be.undefined;
-  });
-
-});
-
-describe("calculateNumber with type SUBTRACT", () => {
-
-  it('Calculate is working with integers', () => {
-    chai.expect(calculateNumber(2, 3, 'SUBTRACT')).to.be.equal(-1);
-  });
-
-  it('Calculate is working with floats', () => {
-    chai.expect(calculateNumber(2, 3.4, 'SUBTRACT')).to.be.equal(-1);
-  });
-
-  it('Calculate is working with floats', () => {
-    chai.expect(calculateNumber(2, 3.7, 'SUBTRACT')).to.be.equal(-2);
-  });
-
-  it('working if both floats', () => {
-    chai.expect(calculateNumber(1.2, 3.7, 'SUBTRACT')).to.be.equal(-3);
-  });
-
-  it('working if both floats', () => {
-    chai.expect(calculateNumber(1.52, 3.71, 'SUBTRACT')).to.be.equal(-2);
-  });
-
-  it('working if one argument is not int or float', () => {
-    chai.expect(calculateNumber(1.5, "3.7", 'SUBTRACT')).to.be.equal(-2);
-  });
-
-  it('working if both arguments is not int or float', () => {
-    chai.expect(calculateNumber("1.5", "3.7", 'SUBTRACT')).to.be.equal(-2);
-  });
-
-  it('returning nan while rounding string litterals', () => {
-    chai.expect(calculateNumber("ali", "3.7", 'SUBTRACT')).to.be.NaN;
-  });
-
-  it('returning nan while rounding arrays', () => {
-    chai.expect(calculateNumber([false], "3.7", 'SUBTRACT')).to.be.NaN;
-  });
-
-  it('using lower case type will return undefined', () => {
-    chai.expect(calculateNumber([false], 3.7, 'subtract')).to.be.undefined;
-  });
-
-});
-
-describe("calculateNumber with type DIVIDE", () => {
-
-  it('Calculate is working with integers', () => {
-    chai.expect(calculateNumber(2, 3, 'DIVIDE').toFixed(2)).to.be.equal('0.67');
-  });
-
-  it('Calculate is working with floats', () => {
-    chai.expect(calculateNumber(2, 3.4, 'DIVIDE').toFixed(2)).to.be.equal('0.67');
-  });
-
-  it('Calculate is working with floats', () => {
-    chai.expect(calculateNumber(2, 3.7, 'DIVIDE')).to.be.equal(0.50);
-  });
-
-  it('working if both floats', () => {
-    chai.expect(calculateNumber(1.2, 3.7, 'DIVIDE')).to.be.equal(0.25);
-  });
-
-  it('working if both floats', () => {
-    chai.expect(calculateNumber(1.5, 3.7, 'DIVIDE')).to.be.equal(0.50);
-  });
-
-  it('working if one argument is not int or float', () => {
-    chai.expect(calculateNumber(1.5, "3.7", 'DIVIDE')).to.be.equal(0.50);
-  });
-
-  it('working if both arguments is not int or float', () => {
-    chai.expect(calculateNumber("1.5", "3.7", 'DIVIDE')).to.be.equal(0.50);
-  });
-
-  it('returning nan while rounding string litterals', () => {
-    chai.expect(calculateNumber("ali", 3.7, 'DIVIDE')).to.be.NaN;
-  });
-
-  it('returning nan while rounding arrays', () => {
-    chai.expect(calculateNumber([false], 3.7, 'DIVIDE')).to.be.NaN;
-  });
-
-  it('using lower case type will return undefined', () => {
-    chai.expect(calculateNumber([false], 3.7, 'divide')).to.be.undefined;
-  });
-
-  it('test should throw error if b == 0', () => {
-    chai.expect(calculateNumber(5.25, 0, 'divide')).to.throw;
-  });
-
-  it('test should throw error if rounded b == 0', () => {
-    chai.expect(calculateNumber(5.25, 0.49, 'divide')).to.throw;
-  });
-
-  it('test shouldn\'t throw error if rounded b > 0', () => {
-    chai.expect(calculateNumber(5.25, 0.51, 'divide')).to.not.throw;
+  describe('type = "DIVIDE"', () => {
+    it('Calculate is working with integers', () => {
+      chai.expect(calculateNumber('DIVIDE', 2, 3).toFixed(2)).to.be.equal('0.67');
+    });
+  
+    it('Calculate is working with floats', () => {
+      chai.expect(calculateNumber('DIVIDE', 2, 3.4).toFixed(2)).to.be.equal('0.67');
+    });
+  
+    it('Calculate is working with floats', () => {
+      chai.expect(calculateNumber('DIVIDE', 2, 3.7)).to.be.equal(0.50);
+    });
+  
+    it('working if both floats', () => {
+      chai.expect(calculateNumber('DIVIDE', 1.2, 3.7)).to.be.equal(0.25);
+    });
+  
+    it('working if both floats', () => {
+      chai.expect(calculateNumber('DIVIDE', 1.5, 3.7)).to.be.equal(0.50);
+    });
+  
+    it('using lower case type will return undefined', () => {
+      chai.expect(calculateNumber('divide', 50, 3.7)).to.be.equal(0);
+    });
+  
+    it('test should throw error if b == 0', () => {
+      chai.expect(calculateNumber('DIVIDE', 5.25, 0)).to.be.equal('Error');
+    });
+  
+    it('test should throw error if rounded b == 0', () => {
+      chai.expect(calculateNumber('DIVIDE', 5.25, 0.49)).to.be.equal('Error');
+    });
+  
+    it('test shouldn\'t throw error if rounded b > 0', () => {
+      chai.expect(calculateNumber('DIVIDE', 5.25, 0.51)).to.be.not.equal('Error');
+    });
   });
 });

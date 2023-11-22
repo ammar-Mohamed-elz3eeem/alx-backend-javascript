@@ -1,9 +1,9 @@
-function calculateNumber(a, b, type) {
+function calculateNumber(type, a, b) {
   a = Math.round(a);
   b = Math.round(b);
 
   if (b == 0 && type == 'DIVIDE') {
-    throw new Error();
+    return 'Error';
   }
 
   switch (type) {
