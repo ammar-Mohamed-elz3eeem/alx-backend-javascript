@@ -1,34 +1,27 @@
 const fs = require('fs');
 
 const _studentsPerMajor = (students) => {
-  const studentsPerMajor = students.reduce((prev, current) => {
-    const Obj = { ...prev };
-    if (Object.keys(prev).includes(current.field)) {
-      Obj[current.field].push(current);
+  const obj = {};
+  students.forEach(el => {
+    const student = el.split(',');
+    if (!obj[student[3]]) {
+      obj[student[3]] = [student[0]];
     } else {
-      Obj[current.field] = [current];
+      obj[student[3]].push(student[0]);
     }
-    return Obj;
-  }, {});
-  Object.keys(studentsPerMajor).forEach((key) => {
-    console.log(`Number of students in ${key}: ${studentsPerMajor[key].length}. List: ${studentsPerMajor[key].map((student) => student.firstname).join(', ')}`);
   });
+  return obj;
 };
 
 const countStudents = (path) => {
   try {
     const buffer = fs.readFileSync(path);
-    const content = buffer.toString().split('\n').slice(1, -1).map((student) => {
-      const studentInfo = student.split(',');
-      return {
-        firstname: studentInfo[0],
-        lastname: studentInfo[1],
-        age: studentInfo[2],
-        field: studentInfo[3],
-      };
-    });
-    console.log(`Number of students: ${content.length}`);
-    _studentsPerMajor(content);
+    const students = buffer.toString().split('\n').slice(1, -1);
+    console.log(`Number of students: ${students.length}`);
+    const obj = _studentsPerMajor(students);
+    for (const cls in obj) {
+      console.log(`Number of students in ${cls}: ${obj[cls].length}. List: ${obj[cls].join(', ')}`);
+    }
   } catch (err) {
     throw new Error('Cannot load the database');
   }
