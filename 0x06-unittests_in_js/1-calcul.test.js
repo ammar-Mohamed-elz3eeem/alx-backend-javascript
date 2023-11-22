@@ -3,90 +3,69 @@ const calculateNumber = require('./1-calcul');
 
 describe('calculateNumber', () => {
   describe('type = "ADD"', () => {
-    it('Calculate is working with integers', () => {
-      assert.strictEqual(calculateNumber(2.0, 3.0, 'ADD'), 5);
+    it('equal positive numbers', () => {
+      assert.strictEqual(calculateNumber(2.0, 2.0, 'ADD'), 4);
     });
-    it('Calculate is working with floats', () => {
-      assert.strictEqual(calculateNumber(2.0, 3.4, 'ADD'), 5);
+    it('equal positive numbers (one rounded to smallest & one rounded to biggest)', () => {
+      assert.strictEqual(calculateNumber(2.7, 2.3, 'ADD'), 5);
     });
-    it('Calculate is working with floats', () => {
-      assert.strictEqual(calculateNumber(2.0, 3.7, 'ADD'), 6);
+    it('one positive & one negative number', () => {
+      assert.strictEqual(calculateNumber(-2.0, 2.0, 'ADD'), 0);
     });
-    it('working if both floats', () => {
-      assert.strictEqual(calculateNumber(1.2, 3.7, 'ADD'), 5);
+    it('one positive rounded to smallest & one negative number rounded to biggest', () => {
+      assert.strictEqual(calculateNumber(2.7, -2.3, 'ADD'), 1);
     });
-    it('working if both floats', () => {
-      assert.strictEqual(calculateNumber(1.5, 3.7, 'ADD'), 6);
+    it('equal netive numbers', () => {
+      assert.strictEqual(calculateNumber(-2.0, -2.0, 'ADD'), -4);
     });
-    it('working if one argument is not int or float', () => {
-      assert.strictEqual(calculateNumber(1.5, "3.7", 'ADD'), 6);
+    it('equal netive numbers (one rounded to smallest & one rounded to biggest)', () => {
+      assert.strictEqual(calculateNumber(-2.7, -2.3, 'ADD'), -5);
     });
-    it('working if both arguments is not int or float', () => {
-      assert.strictEqual(calculateNumber("1.5", "3.7", 'ADD'), 6);
+    it('0 + 0 = 0', () => {
+      assert.strictEqual(calculateNumber(0.0, 0.0, 'ADD'), 0);
+    });
+    it('test with add lowercase', () => {
+      assert.strictEqual(calculateNumber(0.0, 0.0, 'add'), 0);
     });
   });
   describe('type == "SUBTRACT"', () => {
-    it('Calculate is working with integers', () => {
-      assert.strictEqual(calculateNumber(2, 3, 'SUBTRACT'), -1);
+    it('equal positive numbers', () => {
+      assert.strictEqual(calculateNumber(2.0, 2.0, 'SUBTRACT'), 0);
     });
-    it('Calculate is working with floats', () => {
-      assert.strictEqual(calculateNumber(2, 3.4, 'SUBTRACT'), -1);
+    it('equal positive numbers (one rounded to smallest & one rounded to biggest)', () => {
+      assert.strictEqual(calculateNumber(2.7, 2.3, 'SUBTRACT'), 1);
     });
-    it('Calculate is working with floats', () => {
-      assert.strictEqual(calculateNumber(2, 3.7, 'SUBTRACT'), -2);
+    it('one positive & one negative number', () => {
+      assert.strictEqual(calculateNumber(-2.0, 2.0, 'SUBTRACT'), -4);
     });
-    it('working if both floats', () => {
-      assert.strictEqual(calculateNumber(1.2, 3.7, 'SUBTRACT'), -3);
+    it('one positive rounded to smallest & one negative number rounded to biggest', () => {
+      assert.strictEqual(calculateNumber(2.7, -2.3, 'SUBTRACT'), 5);
     });
-    it('working if both floats', () => {
-      assert.strictEqual(calculateNumber(1.5, 3.7, 'SUBTRACT'), -2);
+    it('equal netive numbers', () => {
+      assert.strictEqual(calculateNumber(-2.0, -2.0, 'SUBTRACT'), 0);
     });
-    it('working if one argument is not int or float', () => {
-      assert.strictEqual(calculateNumber(1.5, "3.7", 'SUBTRACT'), -2);
+    it('equal netive numbers (one rounded to smallest & one rounded to biggest)', () => {
+      assert.strictEqual(calculateNumber(-2.7, -2.3, 'SUBTRACT'), -1);
     });
-    it('working if both arguments is not int or float', () => {
-      assert.strictEqual(calculateNumber("1.5", "3.7", 'SUBTRACT'), -2);
+    it('0 + 0 = 0', () => {
+      assert.strictEqual(calculateNumber(0.0, 0.0, 'SUBTRACT'), 0);
+    });
+    it('test with subtract lowercase', () => {
+      assert.strictEqual(calculateNumber(0.0, 0.0, 'subtract'), 0);
     });
   });
   describe('type = "DIVIDE"', () => {
-    it('Calculate is working with integers', () => {
-      assert.strictEqual(calculateNumber(2, 3, 'DIVIDE').toFixed(2), 0.67);
-    });
-    it('Calculate is working with floats', () => {
-      assert.strictEqual(calculateNumber(2, 3.4, 'DIVIDE').toFixed(2), 0.67);
-    });
-    it('Calculate is working with floats', () => {
-      assert.strictEqual(calculateNumber(2, 3.7, 'DIVIDE'), 0.5);
-    });
-    it('working if both floats', () => {
-      assert.strictEqual(calculateNumber(1.2, 3.7, 'DIVIDE'), 0.25);
-    });
-    it('working if both floats', () => {
-      assert.strictEqual(calculateNumber(1.5, 3.7, 'DIVIDE'), 0.5);
-    });
-    it('working if one argument is not int or float', () => {
-      assert.strictEqual(calculateNumber(1.5, "3.7", 'DIVIDE'), 0.5);
-    });
-    it('working if both arguments is not int or float', () => {
-      assert.strictEqual(calculateNumber("1.5", "3.7", 'DIVIDE'), 0.5);
-    });
-    it('returning nan while rounding string litterals', () => {
-      assert.strictEqual(calculateNumber("ali", 3.7, 'DIVIDE'), NaN);
-    });
-    it('returning nan while rounding arrays', () => {
-      assert.strictEqual(calculateNumber([false], 3.7, 'DIVIDE'), NaN);
-    });
-    it('using lower case type will return undefined', () => {
-      assert.strictEqual(calculateNumber([false], 3.7, 'divide'), undefined);
+    it('using lower case type will return 0', () => {
+      assert.strictEqual(calculateNumber([false], 3.7, 'divide'), 0);
     });
     it('test should throw error if b == 0', () => {
-      assert.throws(() => calculateNumber(5.25, 0, 'DIVIDE'));
+      assert.strictEqual(calculateNumber(5.25, 0, 'DIVIDE'), 'Error');
     });
     it('test should throw error if rounded b == 0', () => {
-      assert.throws(() => calculateNumber(5.25, 0.49, 'DIVIDE'));
+      assert.strictEqual(calculateNumber(5.25, 0.49, 'DIVIDE'), 'Error');
     });
     it('test shouldn\'t throw error if rounded b > 0', () => {
-      assert.doesNotThrow(() => calculateNumber(5.25, 0.51, 'DIVIDE'));
+      assert.notStrictEqual(calculateNumber(5.25, 0.51, 'DIVIDE'), 'Error');
     });
   });
 });

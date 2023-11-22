@@ -3,7 +3,7 @@ function calculateNumber(a, b, type) {
   b = Math.round(b);
 
   if (b == 0 && type == 'DIVIDE') {
-    throw new Error();
+    return 'Error';
   }
 
   switch (type) {
@@ -13,6 +13,8 @@ function calculateNumber(a, b, type) {
       return a - b;
     case 'DIVIDE':
       return a / b;
+    default:
+      return 0;
   }
 }
 
