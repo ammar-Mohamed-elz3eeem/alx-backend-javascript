@@ -30,7 +30,7 @@ const countStudents = (dbPath) => new Promise((res, rej) => {
           str += (`Number of students in ${cls}: ${obj[cls].length}. List: ${obj[cls].join(', ')}\n`);
         }
       }
-      res(str.trim());
+      res(str);
     }
   });
 });
