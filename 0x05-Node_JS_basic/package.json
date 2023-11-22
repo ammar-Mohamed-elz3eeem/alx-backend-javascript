@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
-    "check-lint": "./node_modules/.bin/eslint ./full_server/**/*.js",
+    "check-lint": "./node_modules/.bin/eslint ./full_server/**/*.js ./full_server/*.js",
     "test": "./node_modules/mocha/bin/mocha --require babel-register --exit",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./full_server/server.js ./database.csv"
   },

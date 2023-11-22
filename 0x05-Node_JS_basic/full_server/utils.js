@@ -9,13 +9,12 @@ const readDatabase = (dbPath) => new Promise((resolve, reject) => {
       const students = data.toString().split('\n').slice(1, -1);
       const result = students.reduce((acc, currentStudent) => {
         const student = currentStudent.split(',');
-        const obj = { ...acc };
-        if (!obj[student[3]]) {
-          obj[student[3]] = [student[0]];
+        if (!acc[student[3]]) {
+          acc[student[3]] = [student[0]];
         } else {
-          obj[student[3]].push(student[0]);
+          acc[student[3]].push(student[0]);
         }
-        return obj;
+        return acc;
       }, {});
       resolve(result);
     }
