@@ -1,4 +1,4 @@
-const fs = require('fs/promises');
+const fs = require('fs');
 
 const _studentsPerMajor = (students) => {
   const obj = {};
@@ -13,23 +13,21 @@ const _studentsPerMajor = (students) => {
   return obj;
 };
 
-const countStudents = (path) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const buffer = await fs.readFile(path);
-      const students = buffer.toString().split('\n').slice(1, -1);
-      console.log(`Number of students: ${students.length}`);
-      const obj = _studentsPerMajor(students);
-      for (const cls in obj) {
-        if (cls) {
-          console.log(`Number of students in ${cls}: ${obj[cls].length}. List: ${obj[cls].join(', ')}`);
-        }
-      }
-      resolve();
-    } catch (err) {
-      reject(Error('Cannot load the database'));
+const countStudents = (path) => new Promise((resolve, reject) => {
+  fs.readFile(path, (err, data) => {
+    if (err) {
+      reject(err);
     }
+    const newData = data.toString().split('\n').slice(1, -1);
+    console.log(`Number of students: ${newData.length}`);
+    const obj = _studentsPerMajor(newData);
+    for (const cls in obj) {
+      if (cls) {
+        console.log(`Number of students in ${cls}: ${obj[cls].length}. List: ${obj[cls].join(', ')}`);
+      }
+    }
+    resolve();
   });
-};
+});
 
 module.exports = countStudents;
