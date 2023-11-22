@@ -13,6 +13,8 @@ function calculateNumber(type, a, b) {
       return a - b;
     case 'DIVIDE':
       return a / b;
+    default:
+      return 0;
   }
 }
 
