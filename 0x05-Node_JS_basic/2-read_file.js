@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const _studentsPerMajor = (students) => {
   const obj = {};
-  students.forEach(el => {
+  students.forEach((el) => {
     const student = el.split(',');
     if (!obj[student[3]]) {
       obj[student[3]] = [student[0]];
@@ -20,7 +20,9 @@ const countStudents = (path) => {
     console.log(`Number of students: ${students.length}`);
     const obj = _studentsPerMajor(students);
     for (const cls in obj) {
-      console.log(`Number of students in ${cls}: ${obj[cls].length}. List: ${obj[cls].join(', ')}`);
+      if (cls) {
+        console.log(`Number of students in ${cls}: ${obj[cls].length}. List: ${obj[cls].join(', ')}`);
+      }
     }
   } catch (err) {
     throw new Error('Cannot load the database');
