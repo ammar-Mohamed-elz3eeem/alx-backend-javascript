@@ -16,21 +16,22 @@ const _studentsPerMajor = (students) => {
 };
 
 const countStudents = (path) => {
-  if (!fs.existsSync(path)) {
+  try {
+    const buffer = fs.readFileSync(path);
+    const content = buffer.toString().split('\n').slice(1, -1).map((student) => {
+      const studentInfo = student.split(',');
+      return {
+        firstname: studentInfo[0],
+        lastname: studentInfo[1],
+        age: studentInfo[2],
+        field: studentInfo[3],
+      };
+    });
+    console.log(`Number of students: ${content.length}`);
+    _studentsPerMajor(content);
+  } catch (err) {
     throw new Error('Cannot load the database');
   }
-  const buffer = fs.readFileSync(path);
-  const content = buffer.toString().split('\n').slice(1).map((student) => {
-    const studentInfo = student.split(',');
-    return {
-      firstname: studentInfo[0],
-      lastname: studentInfo[1],
-      age: studentInfo[2],
-      field: studentInfo[3],
-    };
-  });
-  console.log(`Number of students: ${content.length}`);
-  _studentsPerMajor(content);
 };
 
 module.exports = countStudents;
