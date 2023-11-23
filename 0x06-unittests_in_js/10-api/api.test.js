@@ -43,8 +43,7 @@ describe('Login tests', () => {
 describe('Available Payments tests', () => {
   it('respond with object', (done) => {
     req.get(`${API}/available_payments`, (err, res, body) => {
-      const obj = JSON.parse(body);
-      chai.expect(obj).to.deep.equal({
+      chai.expect(JSON.parse(body)).to.be.deep.equal({
         payment_methods: {
           credit_cards: true,
           paypal: false
