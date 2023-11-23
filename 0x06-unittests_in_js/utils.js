@@ -20,4 +20,4 @@ const Utils = {
   },
 };
 
-export default Utils;
+module.exports = Utils;
