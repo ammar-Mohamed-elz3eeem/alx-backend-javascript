@@ -53,4 +53,3 @@ describe('Available Payments tests', () => {
     })
   });
 });
-
