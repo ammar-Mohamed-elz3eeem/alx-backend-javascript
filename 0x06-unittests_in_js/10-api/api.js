@@ -23,7 +23,6 @@ app.get('/available_payments', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  console.log("Post request sent", req.body);
   res.status(200).send(`Welcome ${req.body.username}`);
 });
 
