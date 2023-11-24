@@ -1,18 +1,18 @@
-const sison = require('sinon');
+const sinon = require('sinon');
 const { expect } = require('chai');
 const sendPaymentRequestToApi = require('./3-payment');
 const Utils = require('./utils');
 
 describe('sendPaymentRequestToApi', () => {
   it('check function called with specified parameters', () => {
-    const spy = sison.spy(Utils);
+    const spy = sinon.spy(Utils);
     sendPaymentRequestToApi(100, 20);
     expect(spy.calculateNumber.calledWith('SUM', 100, 20)).to.be.true;
     spy.calculateNumber.restore();
   });
 
   it('check function is called once', () => {
-    const spy = sison.spy(Utils);
+    const spy = sinon.spy(Utils);
     sendPaymentRequestToApi(100, 20);
     expect(spy.calculateNumber.callCount).to.be.equal(1);
     spy.calculateNumber.restore();
