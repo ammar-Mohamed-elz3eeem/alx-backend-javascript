@@ -31,10 +31,10 @@ describe('cart tests', () => {
 });
 
 describe('Login tests', () => {
-  it('respond with welcome <username>', (done) => {
-    req.post(`${API}/login`, {json: {username: 'Ammar'}}, (err, res, body) => {
+  it('respond with welcome <userName>', (done) => {
+    req.post(`${API}/login`, {json: {userName: 'Ammar'}}, (err, res, body) => {
       // chai.expect(res.statusCode).to.equal(200);
-      chai.expect(body).to.equal(`Welcome ${JSON.parse(res.request.body).username}`);
+      chai.expect(body).to.equal(`Welcome ${JSON.parse(res.request.body).userName}`);
       done();
     });
   });
